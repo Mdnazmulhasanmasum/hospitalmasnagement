@@ -1,0 +1,917 @@
+<!doctype html>
+<html lang="English">
+
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="title" content="InfyHMS">
+
+    <meta name="keywords" content="Hospital Management System" />
+
+    <meta name="description" content="Hospital Management System | HMS" />
+    <meta name="author" content="HMS">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="avTKfo9cXeXRZrEhAcC1vBBnH1OyZTKBuaQvIVEx">
+    <meta name="turbo-cache-control" content="no-cache">
+    <title>    Home
+KYAMCH</title>
+            
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://hms.infyom.com/css/front-third-party.css?id=ab893c3cb8391189fb8a">
+    <link rel="stylesheet" href="https://hms.infyom.com/css/front-pages.css?id=3a7aa597de1e15631806">
+    <link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
+    <link rel="stylesheet" href="../cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <!-- Livewire Styles --><style >[wire\:loading][wire\:loading], [wire\:loading\.delay][wire\:loading\.delay], [wire\:loading\.inline-block][wire\:loading\.inline-block], [wire\:loading\.inline][wire\:loading\.inline], [wire\:loading\.block][wire\:loading\.block], [wire\:loading\.flex][wire\:loading\.flex], [wire\:loading\.table][wire\:loading\.table], [wire\:loading\.grid][wire\:loading\.grid], [wire\:loading\.inline-flex][wire\:loading\.inline-flex] {display: none;}[wire\:loading\.delay\.none][wire\:loading\.delay\.none], [wire\:loading\.delay\.shortest][wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter][wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short][wire\:loading\.delay\.short], [wire\:loading\.delay\.default][wire\:loading\.delay\.default], [wire\:loading\.delay\.long][wire\:loading\.delay\.long], [wire\:loading\.delay\.longer][wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest][wire\:loading\.delay\.longest] {display: none;}[wire\:offline][wire\:offline] {display: none;}[wire\:dirty]:not(textarea):not(input):not(select) {display: none;}:root {--livewire-progress-bar-color: #2299dd;}[x-cloak] {display: none !important;}</style>
+        <!-- Links of JS files -->
+    <script src="https://hms.infyom.com/livewire/livewire.min.js?id=6b5eb707"   data-csrf="avTKfo9cXeXRZrEhAcC1vBBnH1OyZTKBuaQvIVEx" data-update-uri="/livewire/update" data-navigate-once="true"></script>
+
+    
+    
+    <script src="../cdn.jsdelivr.net/gh/livewire/turbolinks%40v0.1.x/dist/livewire-turbolinks.js"
+        data-turbolinks-eval="false" data-turbo-eval="false"></script>
+    <script src='../www.google.com/recaptcha/api.js'></script>
+    <script src="../www.google.com/recaptcha/api85f1.js?onload=onloadCallback&amp;render=explicit"></script>
+    
+    <script src="https://hms.infyom.com/js/front-third-party.js?id=13603041ab527b741ce1"></script>
+    <script src="../cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="../cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://hms.infyom.com/messages.js"></script>
+    <script type="text/javascript">
+
+</script>    
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://hms.infyom.com/js/front-pages.js?id=af4571d543fb1833976e"></script>
+        <script>
+        $(document).ready(function() {
+            $(this).scrollTop(0)
+            $('.alert').delay(5000).slideUp(300)
+            // $('.selectize-dropdown').addClass('d-none');
+        })
+
+        $(document).on('click', '.doctor-name-filter', function() {
+            $('.selectize-dropdown').removeClass('d-none')
+        })
+        $(document).on('click', '.languageSelection', function() {
+            let languageName = $(this).data('prefix-value')
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                },
+                type: 'POST',
+                url: '/change-language',
+                data: {
+                    languageName: languageName
+                },
+                success: function() {
+                    location.reload()
+                },
+            })
+        })
+    </script>
+    </head>
+
+<body>
+    
+    <!-- Start Navbar Area -->
+<header class="position-relative">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-1 col-4">
+                <a href="./Home.html" class="header-logo">
+                    <div>
+                        <img src="./Images/v987-18a-removebg-preview.png" alt="Infy HMS" class="img-fluid" />
+                    </div>
+                    
+                </a>
+            </div>
+            <div class="col-lg-11 col-8 ps-0">
+                <nav class="navbar navbar-expand-xl navbar-light justify-content-end py-0">
+                    <button class="navbar-toggler border-0 p-0" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav align-items-center py-2 py-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page"
+                                    href="./Home.html">
+                                    Home
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link "
+                                    href="./Service.html">
+                                    Services
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="./Doctors.html"
+                                    class="nav-link ">Doctors</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="./About.html"
+                                    class="nav-link ">About</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="./Contact.html"
+                                    class="nav-link ">Contact</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"
+                                    >
+                                    Our Features
+                                    <i
+                                        class="fa-solid fa-angle-down ms-1"></i>
+                                </a>
+                                <ul class="nav submenu">
+                                    <li class="nav-item">
+                                        <a class="nav-link "
+                                            href="./Appointment.html">
+                                            Appointment
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link "
+                                            href="./Working Hours.html">
+                                            Working Hours
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link "
+                                            href="./Testimonials.html">
+                                            Testimonials
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link "
+                                            href="./Terms of Service.html">
+                                            Terms of Service
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link "
+                                            href="./Privacy Policy.html">
+                                            Privacy Policy
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                
+                                <a class="nav-link dropdown-link" href="javascript:void(0)">
+                                    English</a>
+                                <ul class="nav submenu language-menu">
+                                                                                                                                                                        <li class="nav-item languageSelection"
+                                                    data-prefix-value="ar">
+                                                    <a href="javascript:void(0)"
+                                                        class="nav-link d-flex align-items-center pe-0">
+                                                        <img class=" country-flag me-2"
+                                                            src="https://hms.infyom.com/assets/img/iraq.svg" />
+                                                        Arabic</a>
+                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="nav-item languageSelection"
+                                                    data-prefix-value="zh">
+                                                    <a href="javascript:void(0)"
+                                                        class="nav-link d-flex align-items-center pe-0">
+                                                        <img class=" country-flag me-2"
+                                                            src="https://hms.infyom.com/assets/img/china.svg" />
+                                                        Chinese</a>
+                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="nav-item languageSelection"
+                                                    data-prefix-value="en">
+                                                    <a href="javascript:void(0)"
+                                                        class="nav-link d-flex align-items-center pe-0">
+                                                        <img class=" country-flag me-2"
+                                                            src="https://hms.infyom.com/assets/img/united-states.svg" />
+                                                        English</a>
+                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="nav-item languageSelection"
+                                                    data-prefix-value="fr">
+                                                    <a href="javascript:void(0)"
+                                                        class="nav-link d-flex align-items-center pe-0">
+                                                        <img class=" country-flag me-2"
+                                                            src="https://hms.infyom.com/assets/img/france.svg" />
+                                                        French</a>
+                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="nav-item languageSelection"
+                                                    data-prefix-value="de">
+                                                    <a href="javascript:void(0)"
+                                                        class="nav-link d-flex align-items-center pe-0">
+                                                        <img class=" country-flag me-2"
+                                                            src="https://hms.infyom.com/assets/img/germany.svg" />
+                                                        German</a>
+                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="nav-item languageSelection"
+                                                    data-prefix-value="pt">
+                                                    <a href="javascript:void(0)"
+                                                        class="nav-link d-flex align-items-center pe-0">
+                                                        <img class=" country-flag me-2"
+                                                            src="https://hms.infyom.com/assets/img/portugal.svg" />
+                                                        Portuguese</a>
+                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="nav-item languageSelection"
+                                                    data-prefix-value="ru">
+                                                    <a href="javascript:void(0)"
+                                                        class="nav-link d-flex align-items-center pe-0">
+                                                        <img class=" country-flag me-2"
+                                                            src="https://hms.infyom.com/assets/img/russia.svg" />
+                                                        Russian</a>
+                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="nav-item languageSelection"
+                                                    data-prefix-value="es">
+                                                    <a href="javascript:void(0)"
+                                                        class="nav-link d-flex align-items-center pe-0">
+                                                        <img class=" country-flag me-2"
+                                                            src="https://hms.infyom.com/assets/img/spain.svg" />
+                                                        Spanish</a>
+                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="nav-item languageSelection"
+                                                    data-prefix-value="tr">
+                                                    <a href="javascript:void(0)"
+                                                        class="nav-link d-flex align-items-center pe-0">
+                                                        <img class=" country-flag me-2"
+                                                            src="https://hms.infyom.com/assets/img/turkey.svg" />
+                                                        Turkish</a>
+                                                </li>
+                                                                                                                                                        </ul>
+                            </li>
+                        </ul>
+                        <div class="text-xl-end header-btn-grp ms-xl-3">
+                                                            <a href="./LogIn.html" data-turbo="false"
+                                    class="btn btn-success me-2 mb-3 mb-xl-0">
+                                    Login
+                                </a>
+                                                        <a href="" class="btn btn-primary mb-3 mb-xl-0">
+                                Book Appointment
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- End Navbar Area -->
+    <input class="userCurrentLanguage" name="userCurrentLanguage" type="hidden" value="en">
+    <input class="invalidNumber" name="invalidNumber" type="hidden" value="Invalid number">
+    <input class="invalidCountryNumber" name="invalidCountryNumber" type="hidden" value="Invalid country code">
+    <input class="tooShort" name="tooShort" type="hidden" value="Too short">
+    <input class="tooLong" name="tooLong" type="hidden" value="Too long">
+    <input class="invalidNumber" name="invalidNumber" type="hidden" value="Invalid number">
+    <input class="invalidNumber" name="invalidNumber" type="hidden" value="Invalid number">
+    <input class="curruntLanguage" name="curruntLanguage" type="hidden" value="en">
+        <div class="home-page">
+        <!-- start hero section -->
+        <section
+                class="hero-section position-relative p-t-120 p-b-200 border-bottom-right-rounded border-bottom-left-rounded bg-gray"
+                id="div1">
+            <div class="container">
+                <div class="row align-items-center flex-column-reverse flex-lg-row">
+                    <div class="col-lg-6  text-lg-start text-center">
+                        <div class="hero-content mt-5 mt-lg-0">
+                            <h6 class="text-primary mb-3">5 Years Experience</h6>
+                            <h1 class="mb-3 pb-1">
+                                Digital Hospital Management at one place
+                            </h1>
+                            <p class="mb-lg-4 pb-lg-3 mb-4">
+                                Next-Gen Hospital Solutions: Drive Innovation, Deliver Quality Healthcare</p>
+                                                            <a href=""
+                                   class="btn btn-primary" data-turbo="false">Sign Up</a>
+                                                    </div>
+                    </div>
+                    <div class="col-lg-6 text-lg-end text-center">
+                        <img src="./Images/HMS.png"
+                             alt="Infy Care" class="img-fluid"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end hero section -->
+
+        <!--start book-appointment section-->
+        <section class="appointment-section">
+            <div class="container">
+                <div class="book-appintment position-relative br-2 bg-white">
+                    <form action="https://hms.infyom.com/appointment-form" method="POST" turbo:load>
+                        <div class="row align-items-center justify-content-around">
+                            <div class="col-lg-3">
+                                <h3 class="mb-lg-0 mb-3 fw-bold">Book an Appointment</h3>
+                            </div>
+                            <div class="col-lg-3 col-md-6 text-center mb-lg-0 mb-3">
+                                <select class="doctor-name-filter" name="doctorId" id="appointmentDoctorId" aria-label="select doctor">
+                                    <option value="">Select Doctor</option>
+                                    <option value="1">Dr. Arindam Chatterjee</option>
+                                    <option value="2">Dr. Srabani Roy</option>
+                                    <option value="3">Dr. Suman Ghosh</option>
+                                    <option value="4">Dr. Nandita Banerjee</option>
+                                    <option value="5">Dr. Abir Dasgupta</option>
+                                    <option value="6">Dr. Moumita Sarkar</option>
+                                    <option value="7">Dr. Partha Dey</option>
+                                    <option value="8">Dr. Tania Biswas</option>
+                                    <option value="9">Dr. Anirban Mitra</option>
+                                    <option value="10">Dr. Rituparna Sen</option>
+                                    <option value="11">Dr. Subhajit Roychowdhury</option>
+                                    <option value="12">Dr. Lopamudra Ghosh</option>
+                                    <option value="13">Dr. Kaushik Bhattacharya</option>
+                                    <option value="14">Dr. Shreya Dutta</option>
+                                    <option value="15">Dr. Amitava Chakraborty</option>
+                                    <option value="16">Dr. Ranjita Pal</option>
+                                    <option value="17">Dr. Debashish Saha</option>
+                                    <option value="18">Dr. Madhumita Das</option>
+                                    <option value="19">Dr. Indranil Mukherjee</option>
+                                    <option value="20">Dr. Jaya Nandi</option>
+                                    <option value="21">Dr. Sayantan Basu</option>
+                                    <option value="22">Dr. Pritha Choudhury</option>
+                                    <option value="23">Dr. Soumyadeep Mondal</option>
+                                    <option value="24">Dr. Mitali Bose</option>
+                                    <option value="25">Dr. Tirthankar Bandyopadhyay</option>
+                                    <option value="26">Dr. Ipsita Halder</option>
+                                    <option value="27">Dr. Pradip Bhunia</option>
+                                    <option value="28">Dr. Rina Ghoshal</option>
+                                    <option value="29">Dr. Debjit Senapati</option>
+                                    <option value="30">Dr. Arpita Majumder</option>
+                                    <option value="31">Dr. Rudranil Sardar</option>
+                                    <option value="32">Dr. Ishita Dey</option>
+                                    <option value="33">Dr. Shubhankar Paul</option>
+                                    <option value="34">Dr. Soma Chakma</option>
+                                    <option value="35">Dr. Anupam Bhuniya</option>
+                                    <option value="36">Dr. Swapna Dey Sarkar</option>
+                                    <option value="37">Dr. Arka Lahiri</option>
+                                    <option value="38">Dr. Chaitali Basak</option>
+                                    <option value="39">Dr. Sandip Kar</option>
+                                    <option value="40">Dr. Madhabi Roy</option>
+                                    <option value="41">Dr. Prasenjit Malakar</option>
+                                    <option value="42">Dr. Ananya Halder</option>
+                                    <option value="43">Dr. Samrat Chanda</option>
+                                    <option value="44">Dr. Rupa Bhattacharjee</option>
+                                    <option value="45">Dr. Bishwajit Karmakar</option>
+                                    <option value="46">Dr. Nabanita Ghosh</option>
+                                    <option value="47">Dr. Tridib Maiti</option>
+                                    <option value="48">Dr. Debolina Mitra</option>
+                                    <option value="49">Dr. Ashis Gaine</option>
+                                    <option value="50">Dr. Puja Sutradhar</option>
+                                    <option value="51">Dr. Nilanjan Sinha</option>
+                                    <option value="52">Dr. Swagata Majumdar</option>
+                                    <option value="53">Dr. Bidisha Bhowmick</option>
+                                    <option value="54">Dr. Rakesh Naskar</option>
+                                    <option value="55">Dr. Poulomi Bhattacharjee</option>
+                                    <option value="56">Dr. Joydeep Dutta</option>
+                                    <option value="57">Dr. Suchismita Ghosh</option>
+                                    <option value="58">Dr. Sudipto Mitra</option>
+                                    <option value="59">Dr. Anushree Saha</option>
+                                    <option value="60">Dr. Aniket Barman</option>
+                                    <option value="61">Dr. Chandrima Roy</option>
+                                    <option value="62">Dr. Arpan Halder</option>
+                                    <option value="63">Dr. Nibedita Paul</option>
+                                    <option value="64">Dr. Ritam Mukherjee</option>
+                                    <option value="65">Dr. Shampa Banerjee</option>
+                                    <option value="66">Dr. Saptarshi Chowdhury</option>
+                                    <option value="67">Dr. Laboni Dutta</option>
+                                    <option value="68">Dr. Tanmoy Ghosh</option>
+                                    <option value="69">Dr. Rumela Chatterjee</option>
+                                    <option value="70">Dr. Biswadeep Roy</option>
+                                    <option value="71">Dr. Madhusree Das</option>
+                                    <option value="72">Dr. Avik Bhattacharya</option>
+                                    <option value="73">Dr. Rachana Sen</option>
+                                    <option value="74">Dr. Pralay Chakraborty</option>
+                                    <option value="75">Dr. Keya Sinha</option>
+                                    
+                                                                    </select>
+                            </div>
+                            <div class="col-lg-3 col-md-6 text-center mb-lg-0 mb-3">
+                                <input type="text" name="appointmentDate" autocomplete="off" class="form-control datepicker"
+                                       id="datepicker"
+                                       placeholder="Select Date">
+
+                            </div>
+                            <div class="col-lg-3 text-end">
+                                <button type="submit" class="btn btn-primary d-block w-100" id="bookAppointment">
+                                    Book Now
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!--end book-appointment section-->
+
+        <!-- start easy-solution section -->
+        <section class="easy-solution-section position-relative">
+            <div class="container">
+                <div class="col-lg-6 text-center mx-auto">
+                    <h6 class="text-primary pb-2">Easy Solutions</h6>
+                    <h2 class="mb-4 pb-4">4 Easy Step and Get the World Best Treatment</h2>
+                </div>
+                <div class="easy-solution-cards">
+                    <div class="row justify-content-between">
+                        <div class="col-xxl-3 col-md-6 text-center solution-card mb-xxl-0 mb-4">
+                            <div class="card">
+                                <div class="icon-box mx-auto br-5 mb-4 d-flex align-items-center justify-content-center">
+                                    <i class="fa-solid fa-user fs-5"></i>
+                                </div>
+                                <div class="card-body p-0 text-center">
+                                    <h4>Qualified Doctors</h4>
+                                    <p class="mb-0">
+                                        Check expert Doctor profile as per your need and get consultation.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6 text-center solution-card mb-xxl-0 mb-4">
+                            <div class="card">
+                                <div class="icon-box mx-auto br-5 mb-4 d-flex align-items-center justify-content-center">
+                                    <i class="fa-solid fa-headphones-simple fs-5"></i>
+                                </div>
+                                <div class="card-body p-0 text-center">
+                                    <h4>Digital Consultation R...</h4>
+                                    <p class="mb-0">
+                                        Our utmost priority is to ensure safety and well being of our patients. To avoid adverse health conditions later,...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xxl-3 col-md-6 text-center solution-card mb-xxl-0 mb-4">
+                            <div class="card">
+                                <div class="icon-box mx-auto br-5 mb-4 d-flex align-items-center justify-content-center">
+                                    <i class="fa-solid fa-calendar-check fs-5"></i>
+                                </div>
+                                <div class="card-body p-0 text-center">
+                                    <h4>Get Your Consultant</h4>
+                                    <p class="mb-0">
+                                        Our internal medicine consultants provide personalized care and treat patients with a wide range of acute and chro...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6 text-center solution-card mb-xxl-0 mb-lg-4">
+                            <div class="card">
+                                <div class="icon-box mx-auto br-5 mb-4 d-flex align-items-center justify-content-center">
+                                    <i class="fa-solid fa-check-double fs-5"></i>
+                                </div>
+                                <div class="card-body p-0 text-center">
+                                    <h4>Get Your Treatment</h4>
+                                    <p class="mb-0">
+                                        We offers expert care from the best doctors. The doctors may direct you to a specialist if needed, in order to hel...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end easy-solution section -->
+
+        <!--start about-section -->
+        <section class="about-section p-t-200 p-b-120">
+            <div class="container">
+                <div class="row align-items-stretch flex-column-reverse flex-lg-row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="row h-100">
+                            <div class="col-lg-7 col-md-7 about-count-block">
+                                <div class="about-count h-100 br-2 text-center d-flex align-items-center justify-content-center py-lg-3 py-5 px-3">
+                                    <div>
+                                        <h3 class="text-green">100</h3>
+                                        <h4 class="fw-normal mb-0">Patients Beds</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-lg-5 col-md-5 about-count-block">
+                                <div class="about-count h-100 br-2 text-center d-flex align-items-center justify-content-center py-lg-3 py-5 px-3">
+                                    <div>
+                                        <h3 class="text-pink">75</h3>
+                                        <h4 class="fw-normal mb-0">Doctors</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-5 about-count-block">
+                                <div class="about-count h-100 br-2 text-center d-flex align-items-center justify-content-center py-lg-3 py-5 px-3">
+                                    <div>
+                                        <h3 class="text-primary">770</h3>
+                                        <h4 class="fw-normal mb-0">Happy Patients</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-md-7 about-count-block">
+                                <div class="about-count h-100 br-2 text-center d-flex align-items-center justify-content-center py-lg-3 py-5 px-3">
+                                    <div>
+                                        <h3 class="text-blue">5</h3>
+                                        <h4 class="fw-normal mb-0">Years Experience</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-right pb-5 pt-lg-5  text-lg-start text-center">
+                            <h2 class="mt-md-3">About Us</h2>
+                            <p class="mt-4">At Home of Compassion Hospital, we are dedicated to providing exceptional and comprehensive care to our patients. Our team of experienced healthcare professionals is committed to using the latest technologies and techniques to ensure that every patient receives the highest quality of care. We pride ourselves on our commitment to excellence and strive to make a positive difference in the lives of those we serve. Join us in our mission to advance healthcare and improve lives.</p>
+                            <a href=""
+                               class="btn btn-primary mt-4">Book Appointment</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- end about-section -->
+
+        <!-- start service-section -->
+        <section class="service-section p-t-120 p-b-100 bg-gray">
+            <div class="container">
+                <div class="col-lg-6 text-center mx-auto">
+                    <h6 class="text-primary mb-3">Our Services</h6>
+                    <h2 class="mb-4 pb-xl-4">
+                        We Offer Different Services To Improve Your Health
+                    </h2>
+                </div>
+                <div class="our-service">
+                    <div class="row justify-content-center">
+                            <div class="col-xl-3 col-lg-4 col-md-6 py-lg-2 card-hover d-flex align-items-stretch">
+                                <div class="card p-c-4 my-lg-2 mx-lg-1 my-md-3 my-2 flex-fill">
+                                    <img src="./Images/Screenshot 2024-11-14 232341.png"
+                                         class="card-img-top img-wh mx-auto " alt="Cardiology">
+                                    <div class="card-body p-0 text-center flex-column">
+                                        <h4 class="card-title mt-4">Cardiology</h4>
+                                        <p class="card-text">Cardiology is medicine speciality that involves diagnosis and treatment of disorders of the heart and certain parts of the...</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 py-lg-2 card-hover d-flex align-items-stretch">
+                                <div class="card p-c-4 my-lg-2 mx-lg-1 my-md-3 my-2 flex-fill">
+                                    <img src="./Images/Screenshot 2024-11-14 232816.png"
+                                         class="card-img-top img-wh mx-auto " alt="Medicine">
+                                    <div class="card-body p-0 text-center flex-column">
+                                        <h4 class="card-title mt-4">Medicine</h4>
+                                        <p class="card-text">Medicine is the science[1] and practice[2] of caring for a patient, managing the diagnosis, prognosis, prevention, treatmen...</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 py-lg-2 card-hover d-flex align-items-stretch">
+                                <div class="card p-c-4 my-lg-2 mx-lg-1 my-md-3 my-2 flex-fill">
+                                    <img src="./Images/Dental.png" class="card-img-top img-wh mx-auto " alt="Dental Unit">
+                                    <div class="card-body p-0 text-center flex-column">
+                                        <h4 class="card-title mt-4">Dental Unit</h4>
+                                        <p class="card-text">KYAMCH is dedicated to providing comprehensive oral healthcare services. Our highly skilled team of dental professionals utilizes state-of-the-art technology and techniques to deliver top-quality dental care.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </section>
+        <!-- end service-section -->
+
+        <!-- start quality-section -->
+        <section class="quality-section p-t-120 p-b-200">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="quality-desc mt-lg-4 text-lg-start text-center">
+                            <h6 class="text-primary pb-2">
+                                Quality Healthcare
+                            </h6>
+                            <h2 class="mb-3">
+                                Have Certified and High Quality Doctor For You
+                            </h2>
+                            <p>
+                                Our medical clinic provides quality care for the entire family while maintaining a personable atmosphere best services. Our medical clinic provides quality. Our medical clinic provides quality care for the entire family while maintaining lizam a personable atmosphere best services. Our medical clinic provides.
+                            </p>
+                            <a href=""
+                               class="btn btn-primary mt-lg-4 mb-lg-0 mb-4">Book Appointment</a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-12 position-relative">
+                        <div class="certified-doctor  text-end">
+                            <img src="./Images/Group.jpeg"alt="Certifired Doctor"class="img-fluid">
+                        </div>
+                        <div class="doctor-desc position-absolute br-2 d-flex align-items-center">
+                            <div class="icon-box br-5 me-md-4 me-2 text-primary bg-white d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-certificate fs-5"></i>
+                            </div>
+
+                            <div class="desc">
+                                <h4 class="text-white">
+                                    Certified Doctor
+                                </h4>
+                                <p class="text-white fs-14 mb-0">
+                                    All expertise doctors as per Hospital  and M...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end quality-section -->
+
+        <!-- start professional-doctors section -->
+        <section class="professional-doctors-section shape-rectangle position-relative">
+            <div class="container">
+                <div class="col-lg-6 text-center mx-auto">
+                    <h6 class="text-primary mb-3">Professional Doctors</h6>
+                    <h2 class="mb-5 pb-xl-3">We are Experienced Healthcare Professionals</h2>
+                </div>
+
+                <div class="slick-slider">
+                            <div class="slide text-center">
+                            <img src="./Images/Dr.1.jpeg"alt="Doctor" class="mx-auto">
+                            <div class="slide-desc mt-4 text-center">
+                                <h6>Dr. Arindam Chatterjee</h6>
+                                <p>MBBS</p>
+                            </div>
+                        </div>
+                            <div class="slide text-center">
+                            <img src="./Images/Dr.2.jpeg" alt="Doctor" class="mx-auto">
+                            <div class="slide-desc mt-4 text-center">
+                                <h6>Dr. Srabani Roy</h6>
+                                <p>MBBS</p>
+                            </div>
+                        </div>
+                            <div class="slide text-center">
+                            <img src="./Images/Dr.3.jpeg" alt="Doctor" class="mx-auto">
+                            <div class="slide-desc mt-4 text-center">
+                                <h6>Dr. Suman Ghosh</h6>
+                                <p>MBBS</p>
+                            </div>
+                        </div>
+                            <div class="slide text-center">
+                            <img src="./Images/Dr.4.jpeg" alt="Doctor" class="mx-auto">
+                            <div class="slide-desc mt-4 text-center">
+                                <h6>Dr. Abir Dasgupta</h6>
+                                <p>MBBS</p>
+                            </div>
+                        </div>
+                            <div class="slide text-center">
+                            <img src="./Images/Dr.5.jpeg" alt="Doctor" class="mx-auto">
+                            <div class="slide-desc mt-4 text-center">
+                                <h6>Dr. Abu Hasan</h6>
+                                <p>MBBS</p>
+                            </div>
+                        </div>
+                            <div class="slide text-center">
+                            <img src="./Images/Dr.6.jpeg" alt="Doctor" class="mx-auto">
+                            <div class="slide-desc mt-4 text-center">
+                                <h6>Dr. Partha Dey</h6>
+                                <p>MBBS</p>
+                            </div>
+                        </div>
+                        <div class="slide text-center">
+                            <img src="./Images/Dr Muntasir Islam.jpeg"alt="Doctor" class="mx-auto">
+                            <div class="slide-desc mt-4 text-center">
+                                <h6>Dr. Anirban Mitra</h6>
+                                <p>MBBS</p>
+                            </div>
+                        </div>
+                        <div class="slide text-center">
+                            <img src="./Images/Dr.Taslima Akter.jpeg"alt="Doctor" class="mx-auto">
+                            <div class="slide-desc mt-4 text-center">
+                                <h6>Dr. Tania Biswas</h6>
+                                <p>MBBS</p>
+                            </div>
+                        </div>
+                        <div class="slide text-center">
+                            <img src="./Images/Dr.7.jpeg"alt="Doctor" class="mx-auto">
+                            <div class="slide-desc mt-4 text-center">
+                                <h6>Dr. Kaushik Bhattacharya</h6>
+                                <p>MBBS</p>
+                            </div>
+                        </div>
+                        <div class="slide text-center">
+                            <img src="./Images/Dr.8.jpeg" alt="Doctor" class="mx-auto">
+                            <div class="slide-desc mt-4 text-center">
+                                <h6>Dr. Moumita Sarkar</h6>
+                                <p>MBBS</p>
+                            </div>
+                        </div>
+                        <div class="slide text-center">
+                            <img src="./Images/Dr.9.jpeg"alt="Doctor" class="mx-auto">
+                            <div class="slide-desc mt-4 text-center">
+                                <h6>Dr. Subhajit Roychowdhury</h6>
+                                <p>MBBS</p>
+                            </div>
+                        </div>
+                        <div class="slide text-center">
+                            <img src="./Images/Dr.10.jpeg"alt="Doctor" class="mx-auto">
+                            <div class="slide-desc mt-4 text-center">
+                                <h6>Dr. Ranjita Pal</h6>
+                                <p>MBBS</p>
+                            </div>
+                        </div>
+                        <div class="slide text-center">
+                            <img src="./Images/Dr.11.jpeg"alt="Doctor" class="mx-auto">
+                            <div class="slide-desc mt-4 text-center">
+                                <h6>Dr. Indranil Mukherjee</h6>
+                                <p>MBBS</p>
+                            </div>
+                        </div>
+            
+                    </div>
+            </div>
+
+        </section>
+        <!-- end professional-doctors section -->
+
+        <!-- start testimonial-section -->
+        <section class="testimonial-section p-t-120">
+            <div class="container">
+                <div class="col-lg-6 text-center mx-auto">
+                    <h6 class="text-primary pb-2">Our Testimonials</h6>
+                    <h2 class="mb-4 pb-xl-4">
+                        What Our Patients Say About Our Medical Treatments
+                    </h2>
+                </div>
+                <div class="row">
+                    <div class="col-xl-9 mx-auto">
+                        <div class="testimonial-slider">
+                                                            <div class="justify-content-center">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-4 col-sm-4 position-relative">
+                                            <div class="testimonial-img">
+                                                <img src="./Images/Rahim.jpg" alt="Testitomianl image" class="img-fluid">
+                                            </div>
+                                            <div class="quote-img br-5 position-absolute">
+                                                <img src="https://hms.infyom.com/web_front/images/testimonials/quote.png" alt="quote">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 col-sm-8 position-relative pb-md-5 mb-md-3">
+                                            <div class="testimonial-desc ps-lg-5 pt-sm-0 pt-4">
+                                                <h3>Abdur Rahim Mondol</h3>
+                                                <p class="mb-0">
+                                                    The services are very good. I recommend another patient to come to this hospital. Everything in hospital is good.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            <div class="justify-content-center">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-4 col-sm-4 position-relative">
+                                            <div class="testimonial-img">
+                                                <img src="./Images/Masum.jpg" alt="Testitomianl image" class="img-fluid">
+                                            </div>
+                                            <div class="quote-img br-5 position-absolute">
+                                                <img src="https://hms.infyom.com/web_front/images/testimonials/quote.png" alt="quote">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 col-sm-8 position-relative pb-md-5 mb-md-3">
+                                            <div class="testimonial-desc ps-lg-5 pt-sm-0 pt-4">
+                                                <h3>Nazmul Hasan</h3>
+                                                <p class="mb-0">
+                                                    We have found the doctors, nursing, staff and support personnel to be extremely skilled and caring in our daily contact with all concerned.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            <div class="justify-content-center">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-4 col-sm-4 position-relative">
+                                            <div class="testimonial-img">
+                                                <img src="./Images/Habib.jpg" alt="Testitomianl image" class="img-fluid">
+                                            </div>
+                                            <div class="quote-img br-5 position-absolute">
+                                                <img src="https://hms.infyom.com/web_front/images/testimonials/quote.png" alt="quote">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 col-sm-8 position-relative pb-md-5 mb-md-3">
+                                            <div class="testimonial-desc ps-lg-5 pt-sm-0 pt-4">
+                                                <h3>Habibur Rahman</h3>
+                                                <p class="mb-0">
+                                                    During our stay in hospital, we find good and excellent treatment from all the employees. They really helpful in all areas of the treatment.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            <div class="justify-content-center">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-4 col-sm-4 position-relative">
+                                            <div class="testimonial-img">
+                                                <img src="./Images/Musfiq.jpg" alt="Testitomianl image" class="img-fluid">
+                                            </div>
+                                            <div class="quote-img br-5 position-absolute">
+                                                <img src="https://hms.infyom.com/web_front/images/testimonials/quote.png" alt="quote">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 col-sm-8 position-relative pb-md-5 mb-md-3">
+                                            <div class="testimonial-desc ps-lg-5 pt-sm-0 pt-4">
+                                                <h3>Musfiq</h3>
+                                                <p class="mb-0">
+                                                    Provided me with excellent and prompt service. The nurses are very attentive and there are always enough meals and service for the patients.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end testimonial-section -->
+    </div>
+    <!-- Start Footer Area -->
+
+<footer class="footer">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-4 mb-lg-0 mb-4">
+                <div class="row justify-content-between">
+                    <div class="col-lg-2 mb-lg-0 mb-4">
+                        <img src="./Images/v987-18a-removebg-preview.png" alt="Infy HMS" class="img-fluid" />
+                    </div>
+                    <div class="col-lg-10">
+                        <p class="d-block text-white">
+                            Over past 10+ years of experience and skills in various technologies, we built great scalable produc
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-3">
+                <h3 class="mb-4 pb-1 text-primary">Useful Link</h3>
+                <ul class="ps-0" style="">
+                    <li class="">
+                        <a href="./Home.html" class="footer-active text-decoration-none mb-3 d-block text-white">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./Service.html" class=" text-decoration-none mb-3 d-block text-white">
+                            Services
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./Doctors.html" class=" text-decoration-none mb-3 d-block text-white">
+                            Doctors
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./About.html" class=" text-decoration-none mb-3 d-block text-white">
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./Contact.html" class=" text-decoration-none mb-3 d-block text-white">
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <h3 class="mb-4 pb-1 text-primary">Contact Information</h3>
+                <div class="footer-info">
+
+                    <div class="d-flex align-items-center footer-info__block mb-3 pb-1">
+                        <i class="fa-solid fa-phone text-white fs-5 me-3"></i>
+                        <a href="tel:+917096336561" class="text-decoration-none text-white fs-6">
+                            +8801745944454
+                        </a>
+                    </div>
+                    <div class="d-flex align-items-center footer-info__block mb-3 pb-1">
+                        <i class="fa-solid fa-clock fs-5 me-3 text-white"></i>
+                        <p class="text-white fs-6 mb-0">
+                            08:00 AM to 5:00 PM
+                        </p>
+                    </div>
+                    <div class="d-flex align-items-center footer-info__block mb-3 pb-1">
+                        <i class="fa-solid fa-location-dot fs-5 me-3 text-white"></i>
+                        <p class="text-white fs-6 mb-0">
+                            Khwaja Yunus Ali Medical College & Hospital, Anayatpur, Chouhali, Sirajganj
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 text-center mt-lg-5 mt-4 copy-right">
+                <p class="pt-4 pb-4 mb-0 text-white">
+                    Copyright © 2025 All Rights Reserved by SIR.J
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- end footer section -->
+
+    <!-- Start Go Top Area -->
+    <div class="go-top bg-success d-flex align-items-center justify-content-center">
+        <i class="fas fa-chevron-up next-arrow"></i>
+    </div>
+</body>
+
+
+
+</html>

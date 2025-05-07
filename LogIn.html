@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+
+
+
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>    Login
+ | KYAMCH DHMS</title>
+    <meta name="description" content="Hospital management system">
+    <meta name="keyword" content="hospital,doctor,patient,fever,MD,MS,MBBS">
+    <link rel="icon" href="../infyhms.sgp1.cdn.digitaloceanspaces.com/639/Graphics.png" type="image/png">
+    <link rel="canonical" href="https://hms.infyom.com/" />
+    <link rel="stylesheet" href="https://hms.infyom.com/favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+
+    <link rel="stylesheet" type="text/css" href="https://hms.infyom.com/assets/css/third-party.css">
+    <link rel="stylesheet" type="text/css" href="https://hms.infyom.com/assets/css/style.css">
+    <link href="https://hms.infyom.com/assets/css/custom-auth.css?id=df9be2c268bab8359b38" rel="stylesheet" type="text/css" />
+    
+    <!-- CSS Libraries -->
+        <!-- Scripts -->
+    <script src="https://hms.infyom.com/assets/js/third-party.js"></script>
+    <script src="https://hms.infyom.com/messages.js"></script>
+    <script src="https://hms.infyom.com/js/pages.js"></script>
+        <script src="https://hms.infyom.com/assets/js/auto_fill/auto_fill.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.alert').delay(5000).slideUp(300)
+        });
+
+        $(document).on('click', '.language-select', function() {
+            let languageName = $(this).data('id');
+            $.ajax({
+                type: 'get',
+                url: 'set-language',
+                data: {
+                    languageName: languageName
+                },
+                success: function() {
+                    location.reload();
+                },
+            });
+        });
+    </script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyAWJC_d2yuYtJRW5TyqOwHDEof4ER8qvfk",
+          authDomain: "hospita-94f7d.firebaseapp.com",
+          projectId: "hospita-94f7d",
+          storageBucket: "hospita-94f7d.firebasestorage.app",
+          messagingSenderId: "987843948662",
+          appId: "1:987843948662:web:6e4fddee8533efcfc62f57"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+      </script>
+</head>
+
+<body
+    class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed">
+    <div class="d-flex flex-column flex-root">
+        <div
+            class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed authImage">
+                <!--begin::Authentication - Sign-in -->
+        <ul class="nav nav-pills" style="justify-content: flex-end; cursor: pointer">
+        <li class="nav-item dropdown">
+            <a class="btn btn-primary w-150px mb-5 indicator m-3" data-bs-toggle="dropdown" href="javascript:void(0)"
+                role="button" aria-expanded="false">English</a>
+            <ul class="dropdown-menu w-150px">
+                                    <li class=""><a
+                            class="dropdown-item  px-5 language-select text-dark"
+                            data-id="ar">Arabic</a>
+                    </li>
+                                    <li class=""><a
+                            class="dropdown-item  px-5 language-select text-dark"
+                            data-id="zh">Chinese</a>
+                    </li>
+                                    <li class="active"><a
+                            class="dropdown-item  px-5 language-select bg-primary text-white"
+                            data-id="en">English</a>
+                    </li>
+                                    <li class=""><a
+                            class="dropdown-item  px-5 language-select text-dark"
+                            data-id="fr">French</a>
+                    </li>
+                                    <li class=""><a
+                            class="dropdown-item  px-5 language-select text-dark"
+                            data-id="de">German</a>
+                    </li>
+                                    <li class=""><a
+                            class="dropdown-item  px-5 language-select text-dark"
+                            data-id="pt">Portuguese</a>
+                    </li>
+                                    <li class=""><a
+                            class="dropdown-item  px-5 language-select text-dark"
+                            data-id="ru">Russian</a>
+                    </li>
+                                    <li class=""><a
+                            class="dropdown-item  px-5 language-select text-dark"
+                            data-id="es">Spanish</a>
+                    </li>
+                                    <li class=""><a
+                            class="dropdown-item  px-5 language-select text-dark"
+                            data-id="tr">Turkish</a>
+                    </li>
+                            </ul>
+        </li>
+    </ul>
+
+    <div class="d-flex flex-column flex-column-fluid align-items-center justify-content-top p-4">
+        <div class="col-12 text-center">
+            <a href="./Home.html" class="image mb-7 mb-sm-10" data-turbo="false">
+                <img alt="Logo" src="./Images/v987-18a-removebg-preview.png" class="img-fluid logo-fix-size">
+            </a>
+        </div>
+        <div class="width-540">
+                                </div>
+        <div class="bg-white rounded-15 shadow-md width-540 px-5 px-sm-7 py-10 mx-auto">
+            <h1 class="text-center mb-7">Sign In</h1>
+            <form onsubmit="() => handleLogin(email, password)">
+                <input type="hidden" name="_token" value="OIygnLor4mIIbwJ5C2puT9dhVfmbtEGCfXJ9mjOU" autocomplete="off">                <div class="mb-sm-7 mb-4">
+                    <label for="email" class="form-label">
+                        Email:<span class="required"></span>
+                    </label>
+                    <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                        required placeholder="Email"
+                        value="">
+                </div>
+                <div class="mb-sm-7 mb-4">
+                    <div class="d-flex justify-content-between">
+                        <label for="password" class="form-label">Password:<span
+                                class="required"></span></label>
+                        <a href="./resetpass.html" class="link-info fs-6 text-decoration-none">
+                            Forgot Password ?
+                        </a>
+                    </div>
+                    <input name="password" type="password" class="form-control" id="password" required
+                        placeholder="Password"
+                        value="">
+                </div>
+                <div class="mb-sm-7 mb-4 form-check">
+                    <input type="checkbox" class="form-check-input" id="remember_me" name="remember" checked>
+                    <label class="form-check-label" for="remember_me">Remember Me</label>
+                </div>
+                <div class="d-grid" data-turbo="false">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+                <div class="d-flex align-items-center mb-10 mt-4">
+                    <span class="text-gray-700 me-2">New Here?</span>
+                    <a href="./patinets registration.html" class="link-info fs-6 text-decoration-none">
+                        Create an Account
+                    </a>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+    <input class="userCurrentLanguage" name="userCurrentLanguage" type="hidden" value="en">
+    <input class="invalidNumber" name="invalidNumber" type="hidden" value="Invalid number">
+    <input class="invalidCountryNumber" name="invalidCountryNumber" type="hidden" value="Invalid country code">
+    <input class="tooShort" name="tooShort" type="hidden" value="Too short">
+    <input class="tooLong" name="tooLong" type="hidden" value="Too long">
+    <input class="invalidNumber" name="invalidNumber" type="hidden" value="Invalid number">
+    <input class="invalidNumber" name="invalidNumber" type="hidden" value="Invalid number">
+</body>
+<!-- musfiq611891-->
+
+<script src="/login.js"></script>
+</html>

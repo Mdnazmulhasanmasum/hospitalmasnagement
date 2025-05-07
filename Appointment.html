@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="English"
+    >
+
+
+
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="title" content="InfyHMS">
+
+    <meta name="keywords" content="Hospital Management System" />
+
+    <meta name="description" content="Hospital Management System | HMS" />
+    <meta name="author" content="HMS">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="zC3Pb1nRqJO8njCQoS39XcJxOHhRIDEfznfckZHr">
+    <meta name="turbo-cache-control" content="no-cache">
+    <title>    Appointments
+ | KYAMCH</title>
+            <link rel="icon" href="../infyhms.sgp1.cdn.digitaloceanspaces.com/639/Graphics.png" type="image/png">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://hms.infyom.com/css/front-third-party.css?id=ab893c3cb8391189fb8a">
+    <link rel="stylesheet" href="https://hms.infyom.com/css/front-pages.css?id=3a7aa597de1e15631806">
+    <link rel="stylesheet" href="../cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
+    <link rel="stylesheet" href="../cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        
+    <!-- Livewire Styles --><style >[wire\:loading][wire\:loading], [wire\:loading\.delay][wire\:loading\.delay], [wire\:loading\.inline-block][wire\:loading\.inline-block], [wire\:loading\.inline][wire\:loading\.inline], [wire\:loading\.block][wire\:loading\.block], [wire\:loading\.flex][wire\:loading\.flex], [wire\:loading\.table][wire\:loading\.table], [wire\:loading\.grid][wire\:loading\.grid], [wire\:loading\.inline-flex][wire\:loading\.inline-flex] {display: none;}[wire\:loading\.delay\.none][wire\:loading\.delay\.none], [wire\:loading\.delay\.shortest][wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter][wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short][wire\:loading\.delay\.short], [wire\:loading\.delay\.default][wire\:loading\.delay\.default], [wire\:loading\.delay\.long][wire\:loading\.delay\.long], [wire\:loading\.delay\.longer][wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest][wire\:loading\.delay\.longest] {display: none;}[wire\:offline][wire\:offline] {display: none;}[wire\:dirty]:not(textarea):not(input):not(select) {display: none;}:root {--livewire-progress-bar-color: #2299dd;}[x-cloak] {display: none !important;}</style>
+        <!-- Links of JS files -->
+    <script src="https://hms.infyom.com/livewire/livewire.min.js?id=6b5eb707"   data-csrf="zC3Pb1nRqJO8njCQoS39XcJxOHhRIDEfznfckZHr" data-update-uri="/livewire/update" data-navigate-once="true"></script>
+
+    
+    
+    <script src="../cdn.jsdelivr.net/gh/livewire/turbolinks%40v0.1.x/dist/livewire-turbolinks.js"
+        data-turbolinks-eval="false" data-turbo-eval="false"></script>
+    <script src='../www.google.com/recaptcha/api.js'></script>
+    <script src="../www.google.com/recaptcha/api85f1.js?onload=onloadCallback&amp;render=explicit"></script>
+    
+    <script src="https://hms.infyom.com/js/front-third-party.js?id=13603041ab527b741ce1"></script>
+    <script src="../cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="../cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://hms.infyom.com/messages.js"></script>
+    <script type="text/javascript">
+    
+
+   
+
+</script>    
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://hms.infyom.com/js/front-pages.js?id=af4571d543fb1833976e"></script>
+        
+    
+    <script src="https://hms.infyom.com/backend/js/moment-round/moment-round.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $(this).scrollTop(0)
+            $('.alert').delay(5000).slideUp(300)
+            // $('.selectize-dropdown').addClass('d-none');
+        })
+
+        $(document).on('click', '.doctor-name-filter', function() {
+            $('.selectize-dropdown').removeClass('d-none')
+        })
+        $(document).on('click', '.languageSelection', function() {
+            let languageName = $(this).data('prefix-value')
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                },
+                type: 'POST',
+                url: '/change-language',
+                data: {
+                    languageName: languageName
+                },
+                success: function() {
+                    location.reload()
+                },
+            })
+        })
+    </script>
+        <script src="https://js.stripe.com/v3/"></script>
+    <script src="../checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        let options = {
+            'key': "rzp_test_SjGMMN12JLEKQU",
+            'amount': 0,
+            'currency': "ARS",
+            'name': "HMS",
+            'order_id': '',
+            'description': '',
+            'image': "https://infyhms.sgp1.cdn.digitaloceanspaces.com/638/Graphics.png",
+            'callback_url': "https://hms.infyom.com/web-razorpay-payment-success",
+            'prefill': {
+                'appointment_id': '',
+                'amount': '',
+                'payment_mode': '',
+            },
+            'theme': {
+                'color': '#FF8E4B',
+            },
+            'modal': {
+                'ondismiss': function() {
+                    // livewire.emit("refresh");
+                    $.ajax({
+                        type: 'POST',
+                        url: route('web.appointment.razorpay.failed'),
+                        data: $("#appointmentForm").serialize(),
+                        success: function(result) {
+                            if (result.success) {
+                                displayErrorMessage(result.message.message);
+                                setTimeout(function() {
+                                    window.location.href = result.message.url
+                                }, 5000);
+                            }
+                        },
+                        error: function(result) {
+                            displayErrorMessage(result.responseJSON.message)
+                        },
+                    });
+                },
+            }
+        }
+        let stripe = '';
+                    stripe = Stripe('pk_test_pBPeDoURc1oUVav3sXDDw3Ss');
+            </script>
+</head>
+
+<body>
+    
+    <!-- Start Navbar Area -->
+<header class="position-relative">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-1 col-4">
+                <a href="./Home.html" class="header-logo">
+                    <img src="./Images/v987-18a-removebg-preview.png" alt="Infy HMS" class="img-fluid" />
+                </a>
+            </div>
+            <div class="col-lg-11 col-8 ps-0">
+                <nav class="navbar navbar-expand-xl navbar-light justify-content-end py-0">
+                    <button class="navbar-toggler border-0 p-0" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav align-items-center py-2 py-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link " aria-current="page"
+                                    href="./Home.html">
+                                    Home
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link "
+                                    href="./Service.html">
+                                    Services
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="./Doctors.html"
+                                    class="nav-link ">Doctors</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="./About.html"
+                                    class="nav-link ">About</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="./Contact.html"
+                                    class="nav-link ">Contact</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"
+                                    >
+                                    Our Features
+                                    <i
+                                        class="fa-solid fa-angle-down ms-1"></i>
+                                </a>
+                                <ul class="nav submenu">
+                                    <li class="nav-item">
+                                        <a class="nav-link active"
+                                            href="appointment.html">
+                                            Appointment
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link "
+                                            href="./Working Hours.html">
+                                            Working Hours
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link "
+                                            href="./Testimonials.html">
+                                            Testimonials
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link "
+                                            href="./Terms of Service.html">
+                                            Terms of Service
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link "
+                                            href="./Privacy Policy.html">
+                                            Privacy Policy
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                
+                                <a class="nav-link dropdown-link" href="javascript:void(0)">
+                                    English</a>
+                                <ul class="nav submenu language-menu">
+                                                                                                                                                                        <li class="nav-item languageSelection"
+                                                    data-prefix-value="ar">
+                                                    <a href="javascript:void(0)"
+                                                        class="nav-link d-flex align-items-center pe-0">
+                                                        <img class=" country-flag me-2"
+                                                            src="https://hms.infyom.com/assets/img/iraq.svg" />
+                                                        Arabic</a>
+                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="nav-item languageSelection"
+                                                    data-prefix-value="zh">
+                                                    <a href="javascript:void(0)"
+                                                        class="nav-link d-flex align-items-center pe-0">
+                                                        <img class=" country-flag me-2"
+                                                            src="https://hms.infyom.com/assets/img/china.svg" />
+                                                        Chinese</a>
+                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="nav-item languageSelection"
+                                                    data-prefix-value="en">
+                                                    <a href="javascript:void(0)"
+                                                        class="nav-link d-flex align-items-center pe-0">
+                                                        <img class=" country-flag me-2"
+                                                            src="https://hms.infyom.com/assets/img/united-states.svg" />
+                                                        English</a>
+                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="nav-item languageSelection"
+                                                    data-prefix-value="fr">
+                                                    <a href="javascript:void(0)"
+                                                        class="nav-link d-flex align-items-center pe-0">
+                                                        <img class=" country-flag me-2"
+                                                            src="https://hms.infyom.com/assets/img/france.svg" />
+                                                        French</a>
+                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="nav-item languageSelection"
+                                                    data-prefix-value="de">
+                                                    <a href="javascript:void(0)"
+                                                        class="nav-link d-flex align-items-center pe-0">
+                                                        <img class=" country-flag me-2"
+                                                            src="https://hms.infyom.com/assets/img/germany.svg" />
+                                                        German</a>
+                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="nav-item languageSelection"
+                                                    data-prefix-value="pt">
+                                                    <a href="javascript:void(0)"
+                                                        class="nav-link d-flex align-items-center pe-0">
+                                                        <img class=" country-flag me-2"
+                                                            src="https://hms.infyom.com/assets/img/portugal.svg" />
+                                                        Portuguese</a>
+                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="nav-item languageSelection"
+                                                    data-prefix-value="ru">
+                                                    <a href="javascript:void(0)"
+                                                        class="nav-link d-flex align-items-center pe-0">
+                                                        <img class=" country-flag me-2"
+                                                            src="https://hms.infyom.com/assets/img/russia.svg" />
+                                                        Russian</a>
+                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="nav-item languageSelection"
+                                                    data-prefix-value="es">
+                                                    <a href="javascript:void(0)"
+                                                        class="nav-link d-flex align-items-center pe-0">
+                                                        <img class=" country-flag me-2"
+                                                            src="https://hms.infyom.com/assets/img/spain.svg" />
+                                                        Spanish</a>
+                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="nav-item languageSelection"
+                                                    data-prefix-value="tr">
+                                                    <a href="javascript:void(0)"
+                                                        class="nav-link d-flex align-items-center pe-0">
+                                                        <img class=" country-flag me-2"
+                                                            src="https://hms.infyom.com/assets/img/turkey.svg" />
+                                                        Turkish</a>
+                                                </li>
+                                                                                                                                                        </ul>
+                            </li>
+                        </ul>
+                        <div class="text-xl-end header-btn-grp ms-xl-3">
+                                                            <a href="./LogIn.html" data-turbo="false"
+                                    class="btn btn-success me-2 mb-3 mb-xl-0">
+                                    Login
+                                </a>
+                                                        <a href="" class="btn btn-primary mb-3 mb-xl-0">
+                                Book Appointment
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- End Navbar Area -->
+    <input class="userCurrentLanguage" name="userCurrentLanguage" type="hidden" value="en">
+    <input class="invalidNumber" name="invalidNumber" type="hidden" value="Invalid number">
+    <input class="invalidCountryNumber" name="invalidCountryNumber" type="hidden" value="Invalid country code">
+    <input class="tooShort" name="tooShort" type="hidden" value="Too short">
+    <input class="tooLong" name="tooLong" type="hidden" value="Too long">
+    <input class="invalidNumber" name="invalidNumber" type="hidden" value="Invalid number">
+    <input class="invalidNumber" name="invalidNumber" type="hidden" value="Invalid number">
+    <input class="curruntLanguage" name="curruntLanguage" type="hidden" value="en">
+        
+    <div class="appointment-page">
+        <!-- start hero section -->
+        <section
+            class="hero-section position-relative p-t-60 border-bottom-right-rounded border-bottom-left-rounded bg-gray overflow-hidden">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 text-lg-start text-center">
+                        <div class="hero-content">
+                            <h1 class="mb-3 pb-1">
+                                Make Appointment
+                            </h1>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb justify-content-lg-start justify-content-center mb-lg-0 mb-5">
+                                    <li class="breadcrumb-item">
+                                        <a href="https://hms.infyom.com/">Home</a>
+                                    </li>
+                                    <li class="breadcrumb-item active" aria-current="page">
+                                        Make Appointment
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-lg-end text-center">
+                        <img src="https://hms.infyom.com/web_front/images/page-banner/make-appointment.png" alt="Infy Care"
+                            class="img-fluid" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end hero section -->
+
+        <section class="appointment-section p-t-120 position-relative">
+            <div class="container">
+                                <div class="alert alert-danger" id="validationErrorsBox" style="display: none"></div>
+                
+                <form method="POST" action="https://hms.infyom.com/appointment" accept-charset="UTF-8" id="webAppointmentFormSubmit" class="appointment-form"><input name="_token" type="hidden" value="zC3Pb1nRqJO8njCQoS39XcJxOHhRIDEfznfckZHr">
+                <input type="hidden" name="_token" value="zC3Pb1nRqJO8njCQoS39XcJxOHhRIDEfznfckZHr" autocomplete="off">                <div class="d-lg-flex align-items-center justify-content-between mb-4">
+    <h2 class="mb-3">Make an Appointment</h2>
+    <div class="d-flex align-items-center mb-3">
+        <div class="form-check d-flex align-items-center mb-0">
+            <input class="form-check-input new-patient-radio" id="newPatient1" checked checked="checked" name="patient_type" type="radio" value="1">
+            <label class="form-check-label ms-3" for="newPatient1">
+                New Patient
+            </label>
+        </div>
+        <div class="form-check ms-4 d-flex align-items-center mb-0">
+            <input class="form-check-input old-patient-radio" id="oldPatient1" name="patient_type" type="radio" value="2">
+
+            <label class="form-check-label ms-3" for="oldPatient1">
+                Old Patient
+            </label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4 col-md-6 old-patient d-none">
+        <div class="appointment-form__input-block">
+            <label for="patient_name" class="form-label">Patient Name :<span
+                    class="required">*</span></label>
+            <input class="form-control" id="patientName" autocomplete="off" required disabled name="patient_name" type="text">
+            <input id="patient" name="patient_id" type="hidden">
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 first-name-div">
+        <div class="appointment-form__input-block">
+            <label for="firstName" class="form-label">First Name :<span
+                    class="required">*</span></label>
+            <input class="form-control " placeholder="Enter your First Name" autocomplete="off" required id="firstName" name="first_name" type="text">
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 last-name-div">
+        <div class="appointment-form__input-block">
+            <label for="lastName" class="form-label">Last Name :<span
+                    class="required">*</span></label>
+            <input class="form-control" placeholder="Enter your Last Name" autocomplete="off" required id="lastName" name="last_name" type="text">
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 gender-div">
+        <div class="appointment-form__input-block">
+            <label for="exampleFormControlInput1" class="form-label">Gender :<span
+                    class="required">*</span></label>
+            <div class="grp-radio d-flex align-items-center">
+                <div class="form-check d-flex align-items-center mb-0">
+                    <input class="form-check-input ms-3" id="radioMale" checked="checked" name="gender" type="radio" value="0">
+                    <label class="form-check-label ms-3"
+                        for="radioMale">Male</label>
+                </div>
+                <div class="form-check ms-4 d-flex align-items-center mb-0">
+                    <input class="form-check-input" id="radioFemale" name="gender" type="radio" value="1">
+                    <label class="form-check-label ms-3"
+                        for="radioFemale">Female</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 ">
+        <div class="appointment-form__input-block">
+            <label for="appointment_charge" class="form-label">Apointment Charge
+                <span class="required">*</span>
+            </label>
+            <input class="form-control" placeholder="Appointment Charge" id="appointmentCharge" readonly="readonly" name="appointment_charge" type="text">
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 ">
+        <div class="appointment-form__input-block">
+            <label for="payment_mode" class="form-label">Payment Mode :<span
+                class="required paymentMode d-none">*</span></label>
+                <select class="selectized appointmentPaymentMode" autocomplete="off" id="appointmentPaymentModeId" name="payment_mode"><option selected="selected" value="">Payment Mode</option><option value="1">Cash</option><option value="2">Cheque</option><option value="6">Other</option><option value="5">Paypal</option></select>
+        </div>
+    </div>
+    <!--div class="col-lg-4 col-md-6 confirm-password-div">
+        <div class="appointment-form__input-block">
+            <label for="confirmPassword" class="form-label">Confirm Password :<span
+                    class="required">*</span></label>
+            <input class="form-control" placeholder="Enter Confirm Password" required min="6" max="10" id="confirmPassword" name="password_confirmation" type="password" value="">
+        </div>
+    </div!-->
+    <div class="col-lg-4 col-md-6">
+        <div class="appointment-form__input-block">
+            <label for="selectDepartment" class="form-label">Doctor Department :<span
+                    class="required">*</span></label>
+
+            <select id="webDepartmentId" name="department_id"><option selected="selected" value="">Select Department</option><option value="47">42</option><option value="48">232</option><option value="3">Allergists</option><option value="9">Assumenda eius incid</option><option value="51">CANCEROLOGIE</option><option value="49">CHAIMAA</option><option value="1">Cardiologists</option><option value="13">Chest Physician</option><option value="22">DR.A  SEN</option><option value="20">Demo</option><option value="45">Dental</option><option value="4">Dermatologists</option><option value="2">Endocrinologists</option><option value="54">Fizik Tedavi ve Rehabilitasyon</option><option value="38">GYNECOLOGY</option><option value="23">General Practice</option><option value="55">Medicina General</option><option value="6">Nephrologists</option><option value="5">Ophthalmologists</option><option value="11">Pediatrician</option><option value="10">Pediatría</option><option value="14">Psicologist</option><option value="26">SURGICAL DEPARTMENT</option><option value="16">chirurgie générale</option><option value="17">chirurgie orthopédique</option><option value="15">dentist</option><option value="41">dermatologist</option><option value="7">dtg</option><option value="21">hart specialist</option><option value="46">hhh</option><option value="50">lazer</option><option value="19">radiologie</option><option value="18">urgence</option></select>
+        </div>
+        <input id="doctor" name="doctors" type="hidden">
+        <input id="appointmentDate" name="apdate" type="hidden">
+        
+        
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="appointment-form__input-block">
+            <label for="selectDoctor" class="form-label">Doctor :<span
+                    class="required">*</span></label>
+            <select autocomplete="off" id="appointmentDoctorId" name="doctor_id"><option selected="selected" value="">Select Doctor</option><option value="1">Doctor mk Doctor</option><option value="2">John Avery</option><option value="7">Mark Cruise</option><option value="101">Talal Khan</option><option value="109">Ali Sahil</option><option value="110">Assem Nour</option><option value="127">Dr. Satyavati AL</option><option value="128">Police Abbaa Jokoto</option><option value="129">Anubhav Goswami</option><option value="130">Doctor1 Doctor1</option><option value="133">HT DGRFERG</option><option value="134">Teststs Frwf</option><option value="135">Sdv Jboi</option><option value="138">DR. Jeet Kk</option><option value="139">Dr. zen One</option><option value="141">Tej Inder</option><option value="144">Annie Bsseor</option><option value="145">Dr. Jagdish Yerodkar</option><option value="146">DR JAPTEJ SINGH</option><option value="147">Dr. Lalan Khatiwoda</option><option value="148">Lewis Kim</option><option value="150">NILANJAN MAITI</option><option value="151">Doctor One</option><option value="152">Lklklk Lklklk</option><option value="153">Dr Zia Farooi</option><option value="154">Bhautik Bhalala Doctor</option><option value="155">Nash Raymond</option><option value="156">Jocelyn Graham</option><option value="157">Mikayla Fowler</option><option value="158">Muhammad Arif</option><option value="159">NUR SYAHIRAH ZAHARI</option><option value="160">Khalid Al habsi</option><option value="161">Yanick Armand WATCHO</option><option value="162">Galena Leblanc</option><option value="163">Wasi Khan</option><option value="164">ROAYAH EST</option><option value="165">Aremu Lanre</option><option value="166">Kashish K</option><option value="167">Saurabh Pandey</option><option value="168">Hassan Pudineh</option><option value="170">Crazy Bow</option><option value="171">Dcotor Who</option><option value="172">Nemesis Lasif</option><option value="173">Branly De León</option><option value="174">Arvind Goswami</option><option value="175">Test Doc DocDocDoc</option><option value="179">Opt Logist</option><option value="180">Dr. K Lego</option><option value="181">Callie Perkins</option><option value="182">NewDoctor LastName</option><option value="183">Hello Nice</option><option value="184">Atendra Kumar</option><option value="185">Fallon Barry</option><option value="186">Mary Njeri</option><option value="187">Malak Luisa</option><option value="188">Boyke Nugra</option><option value="190">Doctor XPTO Xpto</option><option value="191">Teste Doctor</option><option value="192">Abdoctor Lanstnam</option><option value="193">Vi D</option><option value="194">Samet Göktepe</option><option value="195">AAAAA BBBBB</option><option value="196">David Jener</option><option value="198">Saxsa Saxsa</option><option value="200">Hello1 Hello1</option><option value="201">Dr. Parag Patil</option><option value="202">James Boand</option><option value="204">Sagar Saggy</option><option value="205">Lorem Ipsum Sit Ametor</option><option value="206">Mauricio Restrepo</option><option value="207">Karly Fitzgerald</option><option value="208">Sharada S</option><option value="209">Rajesh Ts</option><option value="210">Testprenom Testnom</option><option value="211">Gemechu Mitiku</option><option value="213">Mmm Nnn</option><option value="226">Bool Jua</option><option value="228">Charlie Chaplin</option><option value="229">Cesar Nevarez</option><option value="230">Doc Test</option><option value="232">Yasin Kamran</option><option value="235">Doctor 1</option><option value="236">Leo Gomez</option><option value="237">Chaimaa Chaimaa</option><option value="238">Weilun 1</option><option value="239">Dddd Dddd</option><option value="240">Esraa Esraa</option><option value="241">Yuyuyuy Yuyu</option><option value="243">Peter Scott</option><option value="244">Dhaya Test</option><option value="245">Kirti Qa</option><option value="250">Dev Doctor1</option><option value="251">Anik C</option><option value="252">Fernando Lopez Lopez</option><option value="253">Preime Batumi</option><option value="254">Dr Jinat Afroz Kiron</option><option value="255">Bahadır Önder</option><option value="256">Fizik Tedavi Doktoru</option><option value="259">Test User</option><option value="260">Hafid T</option><option value="261">Dr Fawad Khan</option><option value="262">Arman Khan</option><option value="263">Dr ashish Patil</option><option value="264">Dr nitesh Shaha</option><option value="265">Evelyn Kandakai</option><option value="266">Fdg Gfhfgjs</option><option value="267">Doctor Demo</option><option value="268">Test Test</option><option value="269">Test Doc</option><option value="270">Doctor Castro Aliaga</option><option value="272">Sdibfjsd Isdbfkjd</option><option value="273">Abdiqafar Haaaa</option></select>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="appointment-form__input-block">
+            <label for="date" class="form-label">Date :
+                <span class="required">*</span>
+            </label>
+            <input class="form-control opdDate" autocomplete="off" id="opdDate" required name="opd_date" type="text">
+        </div>
+    </div>
+    <div class="col-lg-6 web-appointment-charge d-none">
+        <div class="appointment-form__input-block">
+            
+            
+        </div>
+    </div>
+    <div class="col-lg-6 paymentType d-none">
+        <div class="appointment-form__input-block">
+           
+            
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="appointment-form__input-block">
+            <label for="description" class="form-label">Description :</label>
+            <textarea class="form-control form-textarea" placeholder="Enter Description" autocomplete="off" rows="4" name="problem" cols="50"></textarea>
+        </div>
+    </div>
+                    <div class="form-group col-sm-12 appointment-slot text-start">
+        <div class="doctor-schedule" style="display: none">
+            <i class="fas fa-calendar-alt"></i>
+            <span class="day-name"></span>
+            <span class="schedule-time"></span>
+        </div>
+        <strong class="error-message" style="display: none"></strong>
+        <div class="slot-heading mb-4">
+            <strong class="available-slot-heading"
+                style="display: none">Available Slot:<span
+                    class="required">*</span></strong>
+        </div>
+        <div class="row">
+            <div class="available-slot form-group col-sm-10">
+            </div>
+        </div>
+        <div class="color-information d-none" align="right" style="display: none">
+            <span><i class="fa fa-circle fa-xs" aria-hidden="true"> </i>
+                Not Available</span>
+        </div>
+    </div>
+    <div class="col-lg-12 text-center mt-4">
+        
+            <button type="submit" class="btn btn-primary custom-btn-lg"
+            id="webAppointmentBtnSave">Save</button>
+    </div>
+        
+</div>
+                </form>
+            </div>
+        </section>
+        <!-- end appointment-form section -->
+
+        <!-- start contact section -->
+        <section class="contact-details-section p-t-120 p-b-120">
+            <div class="container">
+                <div class="row mt-xl-5">
+                    <div class="col-lg-6">
+                        <div
+                            class="text-lg-start text-center mb-lg-0 mb-5">
+                            <h2 class="mb-3">
+                                RAHIM</h2>
+                            <p class="mb-0">
+                                KAYMCH Healthcare has a robust presence across the healthcare ecosystem. From routine wellness &amp; preventive health care to innovative life-saving treatments and diagnostic services, We touched more than many lives from many countries, offering the best clinical outcomes.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-md-6 contact-details-block d-flex align-items-stretch">
+                                <div class="card text-center mx-xl-2 flex-fill">
+                                    <div class="icon-details-box d-flex align-items-center justify-content-center mx-auto">
+                                        <i class="fa-solid fa-phone fs-3"></i>
+                                    </div>
+                                    <div class="card-body text-center d-flex flex-column pb-4">
+                                        <a href="tel:+917096336561"
+                                            class="text-decoration-none fs-5 text-success my-2">
+                                            +8801745944454
+                                        </a>
+                                        <span class="text-secondary fw-light">
+                                            Call Now and Get a Free Consulting
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 contact-details-block d-flex align-items-stretch">
+                                <div class="card text-center mx-xl-2 flex-fill">
+                                    <div class="icon-details-box d-flex align-items-center justify-content-center mx-auto">
+                                        <i class="fa-solid fa-envelope fs-3"></i>
+                                    </div>
+                                    <div class="card-body text-center d-flex flex-column pb-4">
+                                        <a href="https://hms.infyom.com/cdn-cgi/l/email-protection#e589848796a58c8b839c8a88cb8c8b" class="text-decoration-none fs-5 text-success my-2">
+                                            <span class="__cf_email__" data-cfemail="a6cac7c4d5e6cfc8c0dfc9cb88cfc8">[email&#160;protected]</span>
+                                        </a>
+                                        <span class="text-secondary fw-light">Contact Hospital</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 text-center">
+                    <div class="btn-group mt-4 mt-xl-5">
+                                                                                                                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end  contact section -->
+
+        <script data-cfasync="false" src="https://hms.infyom.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script id="appointmentSlotTemplate" type="text/x-jsrender">
+    <div class="time-slot">
+        <span class="time-interval" data-id="{{:index}}">{{:timeSlot}}</span>
+    </div>
+</script>
+        <input id="homeDoctorDepartmentUrl" class="homeDoctorDepartmentUrl" name="doctorDepartmentUrl" type="hidden" value="https://hms.infyom.com/appointment-doctors-list">
+        <input id="homeDoctorUrl" class="homeDoctorUrl" name="doctorUrl" type="hidden" value="https://hms.infyom.com/appointment-doctor-list">
+        <input class="webDoctorChargeUrl" name="webDoctorChargeUrl" type="hidden" value="https://hms.infyom.com/web-doctors-appointment-charge">
+        <input id="homeAppointmentSaveUrl" class="homeAppointmentsSaveUrl" name="appointmentSaveUrl" type="hidden" value="https://hms.infyom.com/appointment-store">
+        <input id="webAppointmentRazorpayInit" class="webAppointmentRazorpayInit" name="webAppointmentRazorpay" type="hidden" value="https://hms.infyom.com/web-appointment-razorpay-onboard">
+        <input id="webAppointmentPaypal" class="webAppointmentPaypal" name="webAppointmentPaypal" type="hidden" value="https://hms.infyom.com/web-appointment-paypal-onboard">
+        <input id="homeDoctorScheduleList" class="homeDoctorScheduleList" name="doctorScheduleList" type="hidden" value="https://hms.infyom.com/appointment-doctor-schedule-list">
+        <input id="homeIsEdit" class="isEdit" name="isEdit" type="hidden" value="">
+        <input id="homeIsCreate" class="isCreate" name="isCreate" type="hidden" value="1">
+        <input id="homeGetBookingSlot" class="homeGetBookingSlot" name="getBookingSlot" type="hidden" value="https://hms.infyom.com/appointment-booking-slot">
+        <input class="webAppointmentIndexPage" name="webAppointmentIndexPage" type="hidden" value="https://hms.infyom.com/appointment">
+        <input class="backUrl" name="backUrl" type="hidden" value="https://hms.infyom.com/appointment">
+    </div>
+    <!-- Start Footer Area -->
+
+<footer class="footer">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-4 mb-lg-0 mb-4">
+                <div class="row justify-content-between">
+                    <div class="col-lg-2 mb-lg-0 mb-4">
+                        <img src="./Images/v987-18a-removebg-preview.png" alt="Infy HMS" class="img-fluid" />
+                    </div>
+                    <div class="col-lg-10">
+                        <p class="d-block text-white">
+                            Over past 10+ years of experience and skills in various technologies, we built great scalable produc
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-3">
+                <h3 class="mb-4 pb-1 text-primary">Useful Link</h3>
+                <ul class="ps-0" style="">
+                    <li class="">
+                        <a href="./Home.html" class=" text-decoration-none mb-3 d-block text-white">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./Service.html" class=" text-decoration-none mb-3 d-block text-white">
+                            Services
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./Doctors.html" class=" text-decoration-none mb-3 d-block text-white">
+                            Doctors
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./About.html" class=" text-decoration-none mb-3 d-block text-white">
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./Contact.html" class=" text-decoration-none mb-3 d-block text-white">
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <h3 class="mb-4 pb-1 text-primary">Contact Information</h3>
+                <div class="footer-info">
+
+                    <div class="d-flex align-items-center footer-info__block mb-3 pb-1">
+                        <i class="fa-solid fa-phone text-white fs-5 me-3"></i>
+                        <a href="tel:+917096336561" class="text-decoration-none text-white fs-6">
+                            +8801745944454
+                        </a>
+                    </div>
+                    <div class="d-flex align-items-center footer-info__block mb-3 pb-1">
+                        <i class="fa-solid fa-clock fs-5 me-3 text-white"></i>
+                        <p class="text-white fs-6 mb-0">
+                            08:00 AM to 5:00 PM
+                        </p>
+                    </div>
+                    <div class="d-flex align-items-center footer-info__block mb-3 pb-1">
+                        <i class="fa-solid fa-location-dot fs-5 me-3 text-white"></i>
+                        <p class="text-white fs-6 mb-0">
+                            Khwaja Yunus Ali Medical College & Hospital, Anayatpur, Chouhali, Sirajganj1
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 text-center mt-lg-5 mt-4 copy-right">
+                <p class="pt-4 pb-4 mb-0 text-white">
+                    Copyright © 2025 All Rights Reserved by SIR.J
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- end footer section -->
+
+    <!-- Start Go Top Area -->
+    <div class="go-top bg-success d-flex align-items-center justify-content-center">
+        <i class="fas fa-chevron-up next-arrow"></i>
+    </div>
+</body>
+
+
+
+</html>
